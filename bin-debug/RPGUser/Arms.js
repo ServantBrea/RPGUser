@@ -1,9 +1,10 @@
 var Arms = (function () {
-    function Arms(name, self_durability) {
+    function Arms(pic, name, self_durability) {
         this.name = "";
         this.self_durability = 0;
         this.plus_durability = 0;
         this.jewelList = new Array();
+        this.pic = this.createBitmapByName(pic);
         this.name = name;
         this.self_durability = self_durability;
         this.updateData();
@@ -16,6 +17,9 @@ var Arms = (function () {
                 this.plus_durability += this.jewelList[i].durabilityAdded;
             }
         }
+    };
+    p.getJewelList = function () {
+        return this.jewelList;
     };
     d(p, "attack"
         ,function () {
@@ -31,6 +35,12 @@ var Arms = (function () {
         this.jewelList.push(jewel);
         this.updateData();
     };
+    p.createBitmapByName = function (name) {
+        var result = new egret.Bitmap();
+        var texture = RES.getRes(name);
+        result.texture = texture;
+        return result;
+    }; //读入位图文件
     return Arms;
 }());
 egret.registerClass(Arms,'Arms');

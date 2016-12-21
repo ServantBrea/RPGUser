@@ -15,8 +15,10 @@ class Hero {
 	private plus_attack = 0;
 	private plus_defense = 0;
 	private armsList:Arms[] = new Array();
+	pic:egret.Bitmap;
 
-	constructor(name:string,level:number,strength:number,physique:number) {
+	constructor(pic:string,name:string,level:number,strength:number,physique:number) {
+		this.pic = this.createBitmapByName(pic);
 		this.name = name;
 		this.level = level;
 		this.strength = strength;
@@ -33,6 +35,18 @@ class Hero {
 				this.plus_defense += this.armsList[i].defense;
 			}
 		}
+	}
+
+	getLevel() {
+		return this.level;
+	}
+    
+    getName() {
+		return this.name;
+	}
+
+	getArmList() {
+		return this.armsList;
 	}
 
     @Cache
@@ -59,4 +73,11 @@ class Hero {
 		this.armsList.push(arm);
 		this.updateData();
 	}
+
+	private createBitmapByName(name: string): egret.Bitmap {
+        var result = new egret.Bitmap();
+        var texture: egret.Texture = RES.getRes(name);
+        result.texture = texture;
+        return result;
+    }//读入位图文件
 }

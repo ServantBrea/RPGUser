@@ -1,7 +1,5 @@
-class Pnode {
+class Pnode extends Locations {
 //声明构造	
-	x:number;//格子x坐标
-	y:number;//格子y坐标
 	F:number;
 	G:number;
 	H:number;
@@ -10,7 +8,6 @@ class Pnode {
 	costMultipier = 1;//消耗
 
 	constructor(x:number,y:number) {
-		this.x = x;
-		this.y = y;
+		super(x,y);
 	}//构造函数
 }

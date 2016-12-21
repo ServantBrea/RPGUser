@@ -9,6 +9,12 @@ var User = (function () {
         this.name = name;
     }
     var d = __define,c=User,p=c.prototype;
+    p.getName = function () {
+        return this.name;
+    };
+    p.getHeroList = function () {
+        return this.heroList;
+    };
     d(p, "fightingCapacity"
         ,function () {
             if (this.heroList.length > 0) {
@@ -22,9 +28,6 @@ var User = (function () {
     );
     p.addHeros = function (hero) {
         this.heroList.push(hero);
-    };
-    p.display = function () {
-        console.log("总战斗力：" + this.fightingCapacity);
     };
     return User;
 }());

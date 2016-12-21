@@ -1,3 +1,9 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 var Cache = function (target, propertyName, desc) {
     var getter = desc.get;
     desc.get = function () {
@@ -6,7 +12,7 @@ var Cache = function (target, propertyName, desc) {
     return desc;
 };
 var Hero = (function () {
-    function Hero(name, level, strength, physique) {
+    function Hero(pic, name, level, strength, physique) {
         this.name = "";
         this.level = 1;
         this.strength = 1;
@@ -14,6 +20,7 @@ var Hero = (function () {
         this.plus_attack = 0;
         this.plus_defense = 0;
         this.armsList = new Array();
+        this.pic = this.createBitmapByName(pic);
         this.name = name;
         this.level = level;
         this.strength = strength;
@@ -30,6 +37,15 @@ var Hero = (function () {
                 this.plus_defense += this.armsList[i].defense;
             }
         }
+    };
+    p.getLevel = function () {
+        return this.level;
+    };
+    p.getName = function () {
+        return this.name;
+    };
+    p.getArmList = function () {
+        return this.armsList;
     };
     d(p, "life"
         ,function () {
@@ -55,6 +71,24 @@ var Hero = (function () {
         this.armsList.push(arm);
         this.updateData();
     };
+    p.createBitmapByName = function (name) {
+        var result = new egret.Bitmap();
+        var texture = RES.getRes(name);
+        result.texture = texture;
+        return result;
+    }; //读入位图文件
+    __decorate([
+        Cache
+    ], p, "life", null);
+    __decorate([
+        Cache
+    ], p, "attack", null);
+    __decorate([
+        Cache
+    ], p, "defense", null);
+    __decorate([
+        Cache
+    ], p, "fightingCapacity", null);
     return Hero;
 }());
 egret.registerClass(Hero,'Hero');

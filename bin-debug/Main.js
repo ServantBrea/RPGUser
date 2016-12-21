@@ -90,7 +90,6 @@ var Main = (function (_super) {
     };
     // 创建游戏场景
     p.createGameScene = function () {
-        //All
         var map = new CreateMap();
         var kill = new KillMosterDemo();
         kill.y = 13 * map.getGridY();
@@ -120,8 +119,11 @@ var Main = (function (_super) {
         this.addChild(taskService.npcList[1].animate);
         this.addChild(taskService.npcList[1].taskTalk);
         this.addChild(taskService.taskPanel.panel);
-        //User
         var rpg = new RPGUser();
+        //UserPanel
+        var userPanel = new UserPanel();
+        userPanel.setUser(rpg.getUser());
+        this.addChild(userPanel);
         //点击NPC事件
         taskService.npcList[0].animate.addEventListener(egret.TouchEvent.TOUCH_TAP, npc1Reaction, this);
         taskService.npcList[1].animate.addEventListener(egret.TouchEvent.TOUCH_TAP, npc2Reaction, this);

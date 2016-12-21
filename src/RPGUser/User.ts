@@ -10,6 +10,14 @@ class User {
 		this.password = password;
 		this.name = name;
 	}
+    
+    getName() {
+		return this.name;
+	}
+
+	getHeroList() {
+		return this.heroList;
+	}
 
     get fightingCapacity() {
         if(this.heroList.length > 0) {
@@ -23,9 +31,5 @@ class User {
 
 	addHeros(hero:Hero) {
 		this.heroList.push(hero);
-	}
-
-	display() {
-		console.log("总战斗力：" + this.fightingCapacity);
 	}
 }

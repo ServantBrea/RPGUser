@@ -102,7 +102,7 @@ class Main extends egret.DisplayObjectContainer {
 
 // 创建游戏场景
     private createGameScene() {
-//All
+
         var map: CreateMap = new CreateMap();
 
         var kill:KillMosterDemo = new KillMosterDemo();
@@ -141,9 +141,14 @@ class Main extends egret.DisplayObjectContainer {
         this.addChild(taskService.npcList[1].animate);
         this.addChild(taskService.npcList[1].taskTalk);
         this.addChild(taskService.taskPanel.panel); 
-//User
-        var rpg:RPGUser = new RPGUser();             
 
+        var rpg:RPGUser = new RPGUser();   
+
+//UserPanel
+        var userPanel:UserPanel = new UserPanel();
+        userPanel.setUser(rpg.getUser());
+        this.addChild(userPanel);         
+        
 //点击NPC事件
         taskService.npcList[0].animate.addEventListener(egret.TouchEvent.TOUCH_TAP, npc1Reaction, this);
         taskService.npcList[1].animate.addEventListener(egret.TouchEvent.TOUCH_TAP, npc2Reaction, this);

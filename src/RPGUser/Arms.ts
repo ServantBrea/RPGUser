@@ -4,8 +4,10 @@ class Arms {
 	private self_durability = 0;
 	private plus_durability = 0;
 	private jewelList:Jewel[] = new Array(); 
+	pic:egret.Bitmap;
 
-	constructor(name:string,self_durability:number) {
+	constructor(pic:string,name:string,self_durability:number) {
+		this.pic = this.createBitmapByName(pic);
 		this.name = name;
 		this.self_durability = self_durability;
 		this.updateData();
@@ -20,6 +22,10 @@ class Arms {
 		}
 	}
 
+	getJewelList() {
+        return this.jewelList;
+	}
+
 	get attack() {
 		return 20 * (this.self_durability + this.plus_durability);
 	}
@@ -32,4 +38,11 @@ class Arms {
 		this.jewelList.push(jewel);
 		this.updateData();
 	}
+
+	private createBitmapByName(name: string): egret.Bitmap {
+        var result = new egret.Bitmap();
+        var texture: egret.Texture = RES.getRes(name);
+        result.texture = texture;
+        return result;
+    }//读入位图文件
 }
